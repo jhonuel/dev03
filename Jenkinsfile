@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Publish') {
             steps {
-                withDockerRegistry([credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/']) {
+                withDockerRegistry([credentialsId: 'jenkins-pwd-01', url: 'https://index.docker.io/v1/']) {
                     sh 'docker push jhonuel/dev03:"$BUILD_ID"'
                 }
             }
