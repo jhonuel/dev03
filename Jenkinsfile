@@ -28,6 +28,7 @@ pipeline {
         }
         stage('Push') {
             steps {
+                checkout scmGit(branches: [[name: '*/dev03']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jhonuel/dev03.git']])
                 sh 'docker push jhonuel/dev03:latest'
             }
         }
