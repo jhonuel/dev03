@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Publish') {
             steps {
-                withDockerRegistry([credentialsId: 'dckr_pat_Z8-64RoFuiyPwz0i4INltBSQ5g8', url: '']) {
+                withDockerRegistry([credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/']) {
                     sh 'docker push jhonuel/dev03:"$BUILD_ID"'
                 }
             }
