@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Verify Docker') {
-            steps {
-                sh 'docker --version'
-                sh 'docker ps'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'docker build -t jhonuel/dev03:latest .'
