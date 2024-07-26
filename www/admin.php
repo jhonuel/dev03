@@ -27,7 +27,7 @@ if(isset($_SESSION['username'])){
 <body>
   <div id="content">
     <div id="header">
-      <h1>IITP MSMS</h1></div>
+      <h1> PRODCUNCIONTEST MSMS</h1></div>
       <div id="left_column">
         <div id="button">
           <ul>
