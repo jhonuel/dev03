@@ -1,0 +1,122 @@
+{% extends '../base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+
+
+
+
+    <div class="flex space-x-4 container mx-auto m-16 px-24">
+
+        <p class="text-gray-600 font-normal  
+         text-3xl">
+        Login Email: {{ request.user.email}}
+        </p>
+
+        <a href="{% url 'users:user_edit' %}" class="p-2 border ">
+            View and edi personal acount
+        </a>
+    </div>
+
+    <br><br><br>
+
+    <h1>compras realizadas</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><br><br>
+
+    <div class="flex justify-center ">
+        <div class="flex justify-center items-center"><span
+                class=" pt-1 mx-3 whitespace-nowrap text-4xl italic font-light text-red-700 hover:text-gray-900">Tienda:
+                {{request.user.seller}}</span>
+        </div>
+    </div>
+
+    {% if request.user.seller %}
+    <a class="btn btn-warning m-1" href="{% url 'ecommerce:product-create' %}">new product</a>
+
+    <table class="table mb-5">
+        <thead>
+            <tr>
+                <th scope="col">Categoría</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Stock</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+
+            <tr>
+                <th scope="col">{{product.category}}</th>
+
+                <th scope="col">
+                    <a href="{% url 'ecommerce:product-detail' product.pk %}"> <button type="button"
+                            class="btn btn-sm btn-outline-secondary">{{ product.title }}</button> </a>
+                </th>
+
+                <th scope="col">{{product.price}}</th>
+
+                <th scope="col">{{product.stock}}</th>
+
+                {% if request.user.is_staff or request.user.seller %}
+                <th scope="col">
+
+                    <a href="{% url 'ecommerce:product-edit' product.pk %}"><button type="button"
+                            class="btn btn-sm btn-outline-primary">Edit</button></a>
+
+                </th>
+                <th scope="col">
+
+                    <a href="{% url 'ecommerce:product-delete' product.pk %}"><button type="button"
+                            class="btn btn-sm btn-outline-danger">Delete</button></a>
+                </th>
+                {% endif %}
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    Aún no has creado tu tienda
+    <a href="{% url 'users:seller_register' %}" class="text-gray-600 hover:underline">
+        Become a vendor</a>
+
+    {% endif %}
+
+</div>
+{% endblock content %}

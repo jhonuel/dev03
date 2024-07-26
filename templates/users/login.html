@@ -1,0 +1,48 @@
+{% extends '../base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="flex justify-center items-center">
+	<div
+		class="flex flex-col items-center justify-center my-20  pt-16   lg:mx-48 sm:2/3 md:w-2/4 lg:1/4 h-full border rounded-3xl  ">
+		<div class="flex justify-center ">
+			<div class="flex justify-center items-center"><span
+					class=" pt-1 mx-3 whitespace-nowrap text-4xl italic font-light text-red-700 hover:text-gray-900">AisModa.</span>
+			</div>
+		</div>
+		<form method="post" action="" class="px-20 pt-12 w-full flex-col space-y-6">
+			{% csrf_token %}
+			<div class="flex flex-col ">
+				<label for="input_email" class="text-left text-red-800">Email*</label>
+				<input type="text" name="email"
+					class="leading-none focus:outline-none border-b-2 hover:border-b-3 border-red-700">
+			</div>
+
+			<div class="flex  flex-col  ">
+				<label for="password" class="text-left text-red-800">Password</label>
+				<input type="password" name="password"
+					class="leading-none focus:outline-none border-b-2 hover:border-b-3 border-red-700">
+
+			</div>
+			{% if user_registration.errors %}
+			<div class="text-center text-red-700 mt-4">
+				{{ user_registration.errors }}
+			</div>
+			{% endif %}
+
+			<div class="mt-16 pt-16 flex justify-center">
+				<input type="submit" class="w-full  w-2/3 px-20 py-3 border border-red-500" value="Login">
+			</div>
+		</form>
+
+
+
+		<h6 class="mb-16 mt-4"> No have acount?
+			<a class="text-blue-500 font-bold" href="{% url 'users:register' %}">Sing in</a>
+		</h6>
+	</div>
+</div>
+
+
+{% endblock content %}
