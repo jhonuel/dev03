@@ -12,7 +12,7 @@ if(isset($_SESSION['username'])){
 <!DOCTYPE html>
 <html>
 <head>
-  <title><?php echo $user;?> - IITP MSMS</title>
+  <title><?php echo $user;?> - IITPR MSMS</title>
   <link rel="stylesheet" type="text/css" href="style/ms.css">
   <link rel="stylesheet" href="style/s.css" type="text/css" media="screen" /> 
   <link rel="stylesheet" type="text/css" href="style/ds.css" media="screen" />
